@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  lapOC:
+    image: lap:OpenCart
+    networks:
+      - mynet
+    links:
+      - mySQL
+    ports:
+      - "4000:80"
+  mySQL:
+    image: mysql:latest
+    networks:
+      - mynet
+    environment:
+      - MYSQL_ROOT_PASSWORD=lol
+      - MYSQL_USER=lapOC
+      - MYSQL_PASSWORD=abcdef
+      - MYSQL_DATABASE=lapOCDB
+    ports:
+      - "3306:3306"
+networks:
+  mynet:
